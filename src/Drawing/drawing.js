@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import "./drawing.css";
 
 class Drawing extends Component {
@@ -9,9 +9,7 @@ class Drawing extends Component {
     return (
       <div className="mainPage">
 
-          <Link to="/">
-            <button title="Let's draw it!!" ></button>
-          </Link>
+          <h1>New Drawing</h1>
 
       </div>
     );

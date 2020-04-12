@@ -1,0 +1,18 @@
+.landingPage {
+  /*background: url("../Background-Landing.png") no-repeat;*/
+  border: 1px solid;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.btn_Draw {
+  color: red;
+  height: 70px;
+  width: 300px;
+  margin: 0 auto;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Luminari, fantasy;
+}

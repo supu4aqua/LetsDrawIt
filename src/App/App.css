@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+.Main {
+  border: 1px solid red;
+  height: 100%;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+}

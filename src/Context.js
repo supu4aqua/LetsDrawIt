@@ -1,7 +1,9 @@
 import React from 'react';
 
 const Context = React.createContext({
-  mainPage: false,
+  paintings: [],
+  cells: [],
+  isLandingPage: true,
   updatePage: () => {}
 });
 
