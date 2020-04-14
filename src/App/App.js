@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import Drawing from "../Drawing/drawing";
+import { Route, Switch, Link } from "react-router-dom";
+//import NewPainting from "../NewPainting/newPainting";
+import Painting from "../Painting/painting";
 import MainRoute from "../MainRoute/mainRoute";
 import Context from "../Context";
-import dummyStore from '../dummy-store';
+import config from "../config";
+import dummyStore from "../dummy-store";
 
 class App extends Component {
   state = {
@@ -38,12 +40,21 @@ class App extends Component {
 
   componentDidMount() {
     //this.fetchDrawings();
+    this.setState(dummyStore);
   }
 
   updatePage = () => {
     this.setState({
       isLandingPage: false
     });
+  };
+
+  deletePainting = paintingId => {
+    /*  const newNotes = this.state.notes.filter(note => note.id !== noteId);
+      this.setState({
+        notes: newNotes
+      });*/
+    console.log("Delete Painting");
   };
 
   render() {
@@ -53,16 +64,26 @@ class App extends Component {
       paintings,
       cells,
       isLandingPage,
-      updatePage: this.updatePage
+      updatePage: this.updatePage,
+      deletePainting: this.deletePainting
     };
-    //console.log(value.mainPage);
+    console.log(value.paintings);
 
     return (
       <div className="Main">
+        <header className="App__header">
+          <h1>
+            <Link to="/" style={{ color: "#FF4500", textDecoration: "none" }}>
+              Painting with Pixels
+            </Link>{" "}
+          </h1>
+        </header>
         <Context.Provider value={value}>
           <Switch>
-            <Route exact path="/" render={() => <MainRoute />} />
-            <Route exact path="/drawing/:id" component={Drawing} />
+            // <Route exact path="/" render={() => <MainRoute />} />
+            <Route exact path="/" component={MainRoute} />
+            <Route exact path="/painting" component={Painting} />
+            <Route exact path="/painting/:id" component={Painting} />
             <Route render={() => <h2> Page Not Found </h2>} />
           </Switch>
         </Context.Provider>

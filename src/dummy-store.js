@@ -2,15 +2,18 @@ export default {
 "paintings": [
     {
 "painting_id": "1",
+"name": "Painting1",
 "date_created": "2016-01-16 12:00:00"
     },
     {
 "painting_id": "2",
+"name": "Painting2",
 "date_created": "2016-05-01 15:00:00"
     },
     {
 "painting_id": "3",
-"name": "2017-02-22 12:00:00"
+"name": "Painting3",
+"date_created": "2017-02-22 12:00:00"
     }
   ],
 "cells": [
