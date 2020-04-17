@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "name": "painting-with-pixels-app",
+  "routes": [
+      { "handle": "filesystem" },
+      { "src": "/.*", "dest": "/index.html" }
+  ]
+}

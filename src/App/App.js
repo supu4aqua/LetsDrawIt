@@ -12,6 +12,12 @@ class App extends Component {
     paintings: [],
     cells: [],
     newPainting: {},
+    gridRowCount: 3,
+    gridColumnCount: 3,
+    paletteRowCount: 5,
+    paletteColumnCount: 2,
+    colorClicked: 'black',
+    paletteColors: ['black', 'yellow', 'blue', 'orange', 'red', 'brown', 'green', 'pink', 'purple', 'cyan'],
     isLandingPage: true
   };
 
@@ -58,12 +64,18 @@ class App extends Component {
   };
 
   render() {
-    const { paintings, cells, isLandingPage } = this.state;
+    const { paintings, cells, gridRowCount, gridColumnCount, paletteRowCount, paletteColumnCount, colorClicked, paletteColors, isLandingPage } = this.state;
     //Set value for context
     const value = {
       paintings,
       cells,
       isLandingPage,
+      gridRowCount,
+      gridColumnCount,
+      paletteRowCount,
+      paletteColumnCount,
+      colorClicked,
+      paletteColors,
       updatePage: this.updatePage,
       deletePainting: this.deletePainting
     };
@@ -77,6 +89,7 @@ class App extends Component {
               Painting with Pixels
             </Link>{" "}
           </h1>
+          <h2>Color the blocks and create a painting!! </h2>
         </header>
         <Context.Provider value={value}>
           <Switch>
