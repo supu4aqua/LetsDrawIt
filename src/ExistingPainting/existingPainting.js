@@ -1,118 +1,191 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
-import "./painting.css";
+import "./existingPainting.css";
 import Context from "../Context";
 
-class Painting extends Component {
+class ExistingPainting extends Component {
   static contextType = Context;
-  //let color = 'white';
+  constructor(props) {
+    super(props);
+    this.state = {
+      paintingGrid: "",
+      currentPainting: []
+    };
+  }
+
+  componentDidMount() {
+    console.log(this.context.cells);
+    const cells = this.context.cells
+      .filter(cell => {
+        return cell.paintingid === parseInt(this.props.match.params.id);
+      })
+      .sort((a, b) => a.position - b.position);
+
+    this.setState(
+      {
+        currentPainting: [...this.state.currentPainting, ...cells]
+      },
+      () => {
+        const paintingGrid = this.createPaintingGrid(
+          this.context.gridRowCount,
+          this.context.gridColumnCount
+        );
+        this.setState({
+          paintingGrid: paintingGrid
+        });
+      }
+    );
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const painting = {
+      cells: this.state.currentPainting
+    };
+    this.setState({ error: null });
+    fetch(`http://localhost:8000/api/cells`, {
+      //  fetch(config.API_URL + `/api/paintings`, {
+      method: "PUT",
+      body: JSON.stringify(painting),
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error;
+          });
+        }
+        return res.json();
+      })
+      .then(data => {
+        this.context.updatePainting(data);
+        this.props.history.push("/");
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
+  };
+
   createPalette(Rows, Columns, Colors) {
     let palette = [];
     let k = 0;
     // Outer loop to create parent
     for (let i = 0; i < Rows; i++) {
-      //  grid.push(<li className="row"></li>);
       let paletteColumns = [];
       //Inner loop to create children
+
       for (let j = 0; j < Columns; j++) {
-        //console.log(Colors[k]);
         paletteColumns.push(
           <div
             className={`palette-column ${Colors[k]}`}
             key={j}
-          //  data-color= {Colors{k}}
-          //  data-pos = {j+1}
             onClick={e => this.handlePaletteSelect(e)}
           ></div>
         );
         k++;
       }
       //Create the parent and add the children
-      palette.push(<li className="palette-row" key={i}>{paletteColumns}</li>);
+      palette.push(
+        <li className="palette-row" key={i}>
+          {paletteColumns}
+        </li>
+      );
     }
     return palette;
   }
 
   createPaintingGrid(Rows, Columns) {
     let grid = [];
+    let position = 1;
+
     // Outer loop to create parent
     for (let i = 0; i < Rows; i++) {
-      //  grid.push(<li className="row"></li>);
       let gridColumns = [];
       //Inner loop to create children
       for (let j = 0; j < Columns; j++) {
-        //gridColumns.push(<div className="column" key={j} onClick={this.bindEventListeners}></div>);
+        console.log(this.state.currentPainting[position - 1]);
         gridColumns.push(
           <div
-            className="column"
+            className={`column ${
+              this.state.currentPainting[position - 1].color
+            }`}
             key={j}
-            onClick={e => this.handlePaintCell(e)}
+            data-position={position}
+            onClick={e => {
+              this.handlePaintCell(e);
+            }}
           ></div>
         );
+        position++;
       }
       //Create the parent and add the children
-      grid.push(<li className="row"key={i}>{gridColumns}</li>);
+      grid.push(
+        <li className="row" key={i}>
+          {gridColumns}
+        </li>
+      );
     }
     return grid;
   }
 
   handlePaletteSelect(e) {
-    //let color = 'blue';
-
     this.context.colorClicked = e.currentTarget.className.split(" ")[1];
-  //  console.log(this.context.colorClicked);
   }
 
   handlePaintCell(e) {
-    console.log("Inside handlePaintCell");
-
-      const initialClass = e.currentTarget.className.split(" ")[1];
-    //  console.log(initialClass);
-      e.target.classList.remove(`${initialClass}`);
+    const initialClass = e.currentTarget.className.split(" ")[1];
+    e.target.classList.remove(`${initialClass}`);
     e.target.classList.add(`${this.context.colorClicked}`);
-    //$(e.currentTarget).attr('class', `${initialClass} ${color}`);
-  //  console.log(e.currentTarget.classList.contains("column"));
-  //  console.log(e);
+    e.target.dataset.color = this.context.colorClicked;
+    const position = e.target.dataset.position;
+    const color = e.target.dataset.color;
+    const cellIndex = this.state.currentPainting.findIndex(painting => {
+      return painting.position === position;
+    });
+    let updateCurrentPainting = Object.assign({}, this.state);
+    updateCurrentPainting.currentPainting[cellIndex].color = color;
+    this.setState(updateCurrentPainting);
   }
 
-
   render() {
-    //  console.log(this.context.gridRows);
-    //  console.log(this.context.gridColumns);
-    this.context.newPainting = [];
     const palette = this.createPalette(
       this.context.paletteRowCount,
       this.context.paletteColumnCount,
       this.context.paletteColors
     );
-    const paintingGrid = this.createPaintingGrid(
-      this.context.gridRowCount,
-      this.context.gridColumnCount
+    const painting = this.context.paintings.find(
+      painting => painting.id === parseInt(this.props.match.params.id)
     );
+    if (!painting) {
+      return <p className="noteError">PAINTING NOT FOUND!!! </p>;
+    }
+
     return (
       <div className="mainPage">
-      <p>Instructions:
-      Click on the color from the palette to select it.
-      Click on the painting grid to set the color in the block. </p>
+        <p>
+          Instructions: Click on the color from the palette to select it. Click
+          on the painting grid to set the color in the block.{" "}
+        </p>
+        <h2>{painting.name}</h2>
         <div>
           <ul className="palette">{palette}</ul>
         </div>
+
         <div>
-          <ul className="grid">{paintingGrid}</ul>
+          <ul className="grid">{this.state.paintingGrid}</ul>
         </div>
-          <label htmlFor="name">Title </label>
-        <input
-          type="text"
-          className="new-note"
-          name="name"
-          id="name"
-          placeholder="painting-name"
-          required
-        />
-        <button className="btn-save-painting">Save</button>
+
+        <button
+          type="submit"
+          className="btn-save-painting"
+          onClick={this.handleSubmit}
+        >
+          Save
+        </button>
       </div>
     );
   }
 }
 
-export default Painting;
+export default ExistingPainting;

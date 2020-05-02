@@ -3,6 +3,9 @@
   margin: auto;
 }
 
+.div {
+  border: 2px dotted red;
+}
 ul {
   list-style-type: none;
   padding: 0;
