@@ -1,6 +1,29 @@
+.paint-area {
+  /*border: 2px solid red;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Oldtown, fantasy;
+}
 
-.mainPage{
+p {
+  margin-left: 20px;
+}
+
+label, input {
   margin: auto;
+  margin-bottom: 20px;
+}
+
+label {
+  margin-right: 15px;
+  font-size: 30px;
+}
+
+input {
+  border-radius: 2px;
+  height: 30px;
+  width: 150px;
 }
 
 ul {
@@ -12,15 +35,19 @@ ul {
 .grid {
   height: 300px;
   width: 300px;
-  border: 3px solid black;
   margin-bottom: 30px;
+  border: 2px solid olive;
+  -moz-box-shadow:    inset 0 0 10px olive;
+   -webkit-box-shadow: inset 0 0 10px olive;
+  /* box-shadow:         inset 0 0 10px olive;*/
+ box-shadow: 3px 3px olive, -1em 0 .4em olive;
+  background: #f7f7f7;
 }
 
 .row {
   width: 100%;
   height: 33.3%;
   display: flex;
-
 }
 
 .column {
@@ -30,13 +57,36 @@ ul {
 }
 
 .palette {
-  height: 200px;
-  width: 100px;
-  margin-bottom: 30px;
+   height: 100px;
+  width: 300px;
+  /*box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);*/
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 50px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  margin-top: 40px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.palette-row div:hover .tooltiptext {
+  visibility: visible;
+}
+
+.palette-row div:hover, .row div:hover {
+  border: 2px solid white;
+  cursor: pointer;
 }
 
 .palette-row {
-  height: 20%;
+  height: 25%;
   width: 100%;
   border: 1px solid black;
   display: flex;
@@ -80,18 +130,31 @@ ul {
   background-color: cyan;
 }
 
-.black{
+.black {
   background-color: black;
 }
 
-.brown{
+.brown {
   background-color: brown;
 }
 
-.btn-save-painting{
-margin: 0 auto;
+.btn-save-painting {
+  margin: 0 auto;
   display: block;
-  width: 50px;
-  height: 30px;
-  margin-bottom: 50px;
+  width: 100px;
+  height: 50px;
+  border-radius: 4px;
+  border: 2px solid brown;
+  cursor: pointer;
+  color: brown;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Oldtown, fantasy;
+  background: transparent;
+  box-shadow: 0 9px #999;
+}
+
+.btn-save-painting:hover {
+  background-color: grey;
+  color: white;
 }

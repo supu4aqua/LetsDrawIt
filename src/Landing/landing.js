@@ -6,18 +6,20 @@ class Landing extends Component {
   static contextType = Context;
   render() {
     return (
-      <div role="main">
+      <div role="main" className="landingPage">
+        <h2>Color the blocks and create a painting!! </h2>
         <h2>Ready to paint?</h2>
-        <div className="landing">
-          <button
-            className="btn_Start"
-            onClick={() => {
-              this.context.updatePage();
-            }}
-          >
-            Let's paint it !!
-          </button>
-        </div>
+
+        <button
+          className="btn_Start"
+          onClick={() => {
+            this.context.updatePage();
+          }}
+        >
+
+          <span>Let's paint it !! </span>
+        </button>
+
       </div>
     );
   }

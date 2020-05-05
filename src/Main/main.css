@@ -1,16 +1,51 @@
-header {
-  padding: 45px 15px;
-}
-.btn-new-painting{
-  margin-bottom: 50px;
-}
-
-.btn-view{
-  margin-left: 50px;
-  margin-right: 30px;
+.mainPage {
+  /*border: 2px solid red;*/
+  display: flex;
+  flex-direction: column;
+  font-family: Oldtown, fantasy;
 }
 
-.btn-delete-painting{
-  margin-left: 20px;
+.btn-new-painting {
+  border-radius: 4px;
+  border: 2px solid brown;
+  background-color: brown;
+  cursor: pointer;
+  color: white;
+  height: 50px;
+  width: 200px;
+  margin: auto;
   margin-bottom: 30px;
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Oldtown, fantasy;
+}
+
+
+p {
+  font-weight: bold;
+  color: red;
+}
+
+.paintings {
+  list-style: none;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.paintingList {
+  /*border: 2px solid green;*/
+  margin: auto;
+}
+
+.btn-delete-painting {
+  height: 30px;
+  width: 30px;
+  background: url("../Delete.jpeg") no-repeat;
+  background-size: 30px auto;
+  border: none;
+  margin: auto;
+  margin-left: 40px;
+  cursor: pointer;
+  justify-content: flex-end;
 }

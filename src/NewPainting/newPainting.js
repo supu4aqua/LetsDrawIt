@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./newPainting.css";
 import Context from "../Context";
+import config from "../config";
 
 class NewPainting extends Component {
   state = {
@@ -27,8 +28,8 @@ class NewPainting extends Component {
       cells: this.state.currentPainting
     };
     this.setState({ error: null });
-    fetch(`http://localhost:8000/api/paintings`, {
-      //  fetch(config.API_URL + `/api/paintings`, {
+    //fetch(`http://localhost:8000/api/paintings`, {
+    fetch(config.API_URL + `/api/paintings`, {
       method: "POST",
       body: JSON.stringify(painting),
       headers: {
@@ -65,7 +66,10 @@ class NewPainting extends Component {
             className={`palette-column ${Colors[k]}`}
             key={j}
             onClick={e => this.handlePaletteSelect(e)}
-          ></div>
+          >
+          <span className="tooltiptext">{`${Colors[k]}`}</span>
+          </div>
+
         );
         k++;
       }
@@ -139,7 +143,11 @@ class NewPainting extends Component {
       this.context.gridColumnCount
     );
     return (
-      <div className="mainPage">
+      <div className="paint-area">
+      <p>
+        Instructions: Click color from the palette to select it.
+        Click on the painting grid to set the color in the block.{" "}
+      </p>
         <form className="addPainting" onSubmit={this.handleSubmit}>
           <label htmlFor="name">Title </label>
           <input
@@ -150,18 +158,13 @@ class NewPainting extends Component {
             placeholder="painting-name"
             required
           />
-          <p>
-            Instructions: Click on the color from the palette to select it.
-            Click on the painting grid to set the color in the block.{" "}
-          </p>
-          <div>
-            <ul className="palette">{palette}</ul>
-          </div>
-
           <div>
             <ul className="grid">{paintingGrid}</ul>
           </div>
 
+          <div>
+            <ul className="palette">{palette}</ul>
+          </div>
           <button type="submit" className="btn-save-painting">
             Save
           </button>

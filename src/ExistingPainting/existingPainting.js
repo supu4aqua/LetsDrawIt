@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./existingPainting.css";
 import Context from "../Context";
+import config from '../config';
 
-class ExistingPainting extends Component {
+class ExistingPainting extends React.Component {
   static contextType = Context;
   constructor(props) {
     super(props);
@@ -13,14 +14,15 @@ class ExistingPainting extends Component {
   }
 
   componentDidMount() {
-    console.log(this.context.cells);
-    const cells = this.context.cells
+    console.log("Component Mount existing painting");
+
+  const cells = this.context.cells
       .filter(cell => {
         return cell.paintingid === parseInt(this.props.match.params.id);
       })
       .sort((a, b) => a.position - b.position);
 
-    this.setState(
+  this.setState(
       {
         currentPainting: [...this.state.currentPainting, ...cells]
       },
@@ -42,8 +44,8 @@ class ExistingPainting extends Component {
       cells: this.state.currentPainting
     };
     this.setState({ error: null });
-    fetch(`http://localhost:8000/api/cells`, {
-      //  fetch(config.API_URL + `/api/paintings`, {
+    //fetch(`http://localhost:8000/api/cells`, {
+       fetch(config.API_URL + `/api/cells`, {
       method: "PUT",
       body: JSON.stringify(painting),
       headers: {
@@ -104,7 +106,7 @@ class ExistingPainting extends Component {
       let gridColumns = [];
       //Inner loop to create children
       for (let j = 0; j < Columns; j++) {
-        console.log(this.state.currentPainting[position - 1]);
+        //console.log(this.state.currentPainting[position - 1]);
         gridColumns.push(
           <div
             className={`column ${
@@ -149,6 +151,8 @@ class ExistingPainting extends Component {
   }
 
   render() {
+    console.log("Render existing painting");
+  //  console.log(this.context.cells);
     const palette = this.createPalette(
       this.context.paletteRowCount,
       this.context.paletteColumnCount,
@@ -160,20 +164,18 @@ class ExistingPainting extends Component {
     if (!painting) {
       return <p className="noteError">PAINTING NOT FOUND!!! </p>;
     }
-
     return (
-      <div className="mainPage">
+      <div className="paint-area">
         <p>
-          Instructions: Click on the color from the palette to select it. Click
+          Instructions: Click color from the palette to select it. Click
           on the painting grid to set the color in the block.{" "}
         </p>
         <h2>{painting.name}</h2>
         <div>
-          <ul className="palette">{palette}</ul>
-        </div>
-
-        <div>
           <ul className="grid">{this.state.paintingGrid}</ul>
+        </div>
+        <div>
+          <ul className="palette">{palette}</ul>
         </div>
 
         <button

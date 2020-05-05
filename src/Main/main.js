@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./main.css";
 import Context from "../Context";
+import config from '../config';
 
 class Main extends Component {
   static contextType = Context;
 
   deletePaintingRequest(paintingId, callback) {
-    fetch(`http://localhost:8000/api/paintings/${paintingId}`, {
-      //  fetch(config.API_URL + `/api/notes/${noteId}`, {
+  //  fetch(`http://localhost:8000/api/paintings/${paintingId}`, {
+        fetch(config.API_URL + `/api/paintings/${paintingId}`, {
       method: "DELETE"
     })
       .then(res => {
@@ -34,14 +35,14 @@ class Main extends Component {
 
   render() {
     const paintings = this.context.paintings.map(painting => (
-      <li key={painting.id}>
+      <li key={painting.id} className="paintings">
         <Link
-          to={`/painting/${painting.id}`}
+          to={`/paintings/${painting.id}`}
           style={{
             color: "00FFFF",
             textDecoration: "none",
             fontWeight: "bold",
-            fontSize: "20px"
+            fontSize: "30px"
           }}
         >
           {painting.name}
@@ -56,20 +57,26 @@ class Main extends Component {
             );
           }}
         >
-          Delete
+
         </button>
       </li>
     ));
 
     return (
       <div role="main" className="mainPage">
-        <Link to="/painting">
+      <p>
+        Instructions: Click color from the palette to select it.
+        Click on the painting grid to set the color in the block.{" "}
+      </p>
+        <Link to="/painting" style={{
+          textDecoration: "none"
+        }}>
           <button title="Create new painting" className="btn-new-painting">
             Create new painting
           </button>
         </Link>
 
-        <div>
+        <div className="paintingList">
           <ul>{paintings}</ul>
         </div>
       </div>

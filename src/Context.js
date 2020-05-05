@@ -3,16 +3,16 @@ import React from 'react';
 const Context = React.createContext({
   paintings: [],
   cells: [],
-  newPainting: [],
-  isLandingPage: true,
+  //newPainting: [],
   gridRowCount: 3,
   gridColumncount: 3,
   paletteRowCount: 2,
   paletteColumnCount: 5,
-  newPaintingId: '',
+  //currentPainting: [],
+  //newPaintingId: '',
   colorClicked: 'black',
   paletteColors: ['black', 'yellow', 'blue', 'orange', 'red', 'brown', 'green', 'pink', 'purple', 'cyan'],
-  updatePage: () => {}
+ isLandingPage: true,
 });
 
 export default Context;
