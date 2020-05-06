@@ -4,7 +4,8 @@ import NewPainting from "../NewPainting/newPainting";
 import ExistingPainting from "../ExistingPainting/existingPainting";
 import MainRoute from "../MainRoute/mainRoute";
 import Context from "../Context";
-import config from '../config';
+import config from "../config";
+import ErrorBoundary from "../ErrorBoundary";
 import "./App.css";
 
 class App extends Component {
@@ -15,7 +16,6 @@ class App extends Component {
     gridColumnCount: 3,
     paletteRowCount: 2,
     paletteColumnCount: 5,
-
     colorClicked: "white",
     paletteColors: [
       "black",
@@ -34,7 +34,6 @@ class App extends Component {
 
   //To fetch data from local host - {stateData} will either be 'cells' or 'paintings'
   fetchData(stateData) {
-  //  const url = `http://localhost:8000/api/${stateData}`;
     const url = config.API_URL + `/api/${stateData}`;
     fetch(url)
       .then(res => {
@@ -56,17 +55,20 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("Component mount app");
     this.fetchData("cells"); //Fetch all cells from localhost
     this.fetchData("paintings"); //Fetch all paintings from localhost
   }
 
+  //Checks if it should render landing page or main page with a list of paintings
+  //Called from Landing component
   updatePage = () => {
     this.setState({
       isLandingPage: false
     });
   };
 
+  //When a new painting is added/saved, update the state
+  //Called from NewPainting component
   addPainting = painting => {
     this.setState({
       paintings: [...this.state.paintings, painting.painting],
@@ -74,6 +76,8 @@ class App extends Component {
     });
   };
 
+  //When a painting is deleted from main screen, delete the painting based on id and update the state
+  //Called from Main component
   deletePainting = paintingId => {
     const newPaintings = this.state.paintings.filter(
       painting => painting.id !== paintingId
@@ -83,67 +87,106 @@ class App extends Component {
     });
   };
 
-  updatePainting = cells => {
-    console.log("Update Painting");
+  //Filter the cells based on the painting id
+  //Called from ExistingPainting component
+  setCurrentPainting = id => {
+    const cells = this.state.cells
+      .filter(cell => {
+        return cell.paintingid === id;
+      })
+      .sort((a, b) => a.position - b.position);
+    return cells;
+  };
+
+  //Update the state when any color is selected from the palette
+  //Called from ExistingPainting component
+  handlePaletteSelect = e => {
+    this.setState({
+      colorClicked: e.currentTarget.className.split(" ")[1]
+    });
+  };
+
+  //Update the cells in state when painting grid is updated with any color
+  //Called from existingPainting component
+  handlePaintCell = e => {
+    const initialClass = e.currentTarget.className.split(" ")[1];
+    e.target.classList.remove(`${initialClass}`);
+    //Add selected color to the class
+    e.target.classList.add(`${this.state.colorClicked}`);
+    e.target.dataset.color = this.state.colorClicked;
+
+    const color = this.state.colorClicked;
+    const cellId = e.target.dataset.cellid;
+    const cellIndex = this.state.cells.findIndex(painting => {
+      return painting.id === parseInt(cellId);
+    });
+    let updateCell = Object.assign({}, this.state);
+    //Update cell.color at position cellIndex
+    updateCell.cells[cellIndex].color = color;
+    this.setState(updateCell);
   };
 
   render() {
     const {
       paintings,
       cells,
-    //  newPainting,
       gridRowCount,
       gridColumnCount,
       paletteRowCount,
       paletteColumnCount,
-
       colorClicked,
       paletteColors,
-      //newPaintingId,
       isLandingPage
     } = this.state;
+
     //Set value for context
     const value = {
       paintings,
       cells,
-    //  newPainting,
       gridRowCount,
       gridColumnCount,
       paletteRowCount,
       paletteColumnCount,
-
       colorClicked,
       paletteColors,
       isLandingPage,
-    //  newPaintingId,
       updatePage: this.updatePage,
       addPainting: this.addPainting,
-      //createPainting: this.createPainting,
       deletePainting: this.deletePainting,
-      updatePainting: this.updatePainting,
-
+      setCurrentPainting: this.setCurrentPainting,
+      handlePaletteSelect: this.handlePaletteSelect,
+      handlePaintCell: this.handlePaintCell
     };
-     console.log("Render app");
-
 
     return (
       <div className="Main">
         <header className="App-header">
           <h1>
-            <Link to="/" style={{ color: "#3CB371", textDecoration: "none" }}>
-              Painting with Pixels
+            <Link
+              to="/"
+              style={{
+                color: "#3CB371",
+                textDecoration: "none"
+              }}
+            >
+              Painting with Pixels{" "}
             </Link>{" "}
           </h1>
-
-        </header>
+        </header>{" "}
         <Context.Provider value={value}>
           <Switch>
-            <Route exact path="/" component={MainRoute} />
-            <Route exact path="/painting" component={NewPainting} />
-            <Route exact path="/paintings/:id" key="ExistingPainting" component={ExistingPainting} />
-            <Route render={() => <h2> Page Not Found </h2>} />
-          </Switch>
-        </Context.Provider>
+            <ErrorBoundary>
+              <Route exact path="/" component={MainRoute} />{" "}
+              <Route exact path="/painting" component={NewPainting} />{" "}
+              <Route
+                exact
+                path="/paintings/:id"
+                key="ExistingPainting"
+                component={ExistingPainting}
+              />
+            </ErrorBoundary>{" "}
+          </Switch>{" "}
+        </Context.Provider>{" "}
       </div>
     );
   }

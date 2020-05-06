@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./main.css";
 import Context from "../Context";
-import config from '../config';
+import config from "../config";
 
 class Main extends Component {
   static contextType = Context;
 
+  //Delete painting and update the state by calling callback function
   deletePaintingRequest(paintingId, callback) {
-  //  fetch(`http://localhost:8000/api/paintings/${paintingId}`, {
-        fetch(config.API_URL + `/api/paintings/${paintingId}`, {
+    fetch(config.API_URL + `/api/paintings/${paintingId}`, {
       method: "DELETE"
     })
       .then(res => {
@@ -56,21 +56,22 @@ class Main extends Component {
               this.context.deletePainting
             );
           }}
-        >
-
-        </button>
+        ></button>
       </li>
     ));
 
     return (
       <div role="main" className="mainPage">
-      <p>
-        Instructions: Click color from the palette to select it.
-        Click on the painting grid to set the color in the block.{" "}
-      </p>
-        <Link to="/painting" style={{
-          textDecoration: "none"
-        }}>
+        <p>
+          Instructions: Click color from the palette to select it. Click on the
+          painting grid to set the color in the block.{" "}
+        </p>
+        <Link
+          to="/painting"
+          style={{
+            textDecoration: "none"
+          }}
+        >
           <button title="Create new painting" className="btn-new-painting">
             Create new painting
           </button>

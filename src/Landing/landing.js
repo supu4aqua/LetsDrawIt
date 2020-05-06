@@ -16,10 +16,8 @@ class Landing extends Component {
             this.context.updatePage();
           }}
         >
-
           <span>Let's paint it !! </span>
         </button>
-
       </div>
     );
   }

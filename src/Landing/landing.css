@@ -1,5 +1,4 @@
 .landingPage {
-  /*border: 2px solid red;*/
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -8,7 +7,6 @@
 h2 {
   font-family: Luminari, fantasy;
   font-size: calc(10px + 2vmin);
-  /*border: 2px solid white;*/
   color: white;
   padding: 20px;
   margin-top: 10px;
@@ -18,7 +16,6 @@ h2 {
 
 .btn_Start {
   border-radius: 4px;
-/*  border: 2px solid brown;*/
   cursor: pointer;
   color: brown;
   height: 70px;
@@ -30,6 +27,7 @@ h2 {
   font-family: Luminari, fantasy;
   transition: all 0.5s;
 }
+
 .btn_Start span {
   cursor: pointer;
   display: inline-block;

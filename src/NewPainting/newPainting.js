@@ -28,7 +28,6 @@ class NewPainting extends Component {
       cells: this.state.currentPainting
     };
     this.setState({ error: null });
-    //fetch(`http://localhost:8000/api/paintings`, {
     fetch(config.API_URL + `/api/paintings`, {
       method: "POST",
       body: JSON.stringify(painting),
@@ -67,9 +66,8 @@ class NewPainting extends Component {
             key={j}
             onClick={e => this.handlePaletteSelect(e)}
           >
-          <span className="tooltiptext">{`${Colors[k]}`}</span>
+            <span className="tooltiptext">{`${Colors[k]}`}</span>
           </div>
-
         );
         k++;
       }
@@ -144,10 +142,10 @@ class NewPainting extends Component {
     );
     return (
       <div className="paint-area">
-      <p>
-        Instructions: Click color from the palette to select it.
-        Click on the painting grid to set the color in the block.{" "}
-      </p>
+        <p>
+          Instructions: Click color from the palette to select it. Click on the
+          painting grid to set the color in the block.{" "}
+        </p>
         <form className="addPainting" onSubmit={this.handleSubmit}>
           <label htmlFor="name">Title </label>
           <input
