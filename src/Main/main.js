@@ -44,7 +44,8 @@ class Main extends Component {
             color: "00FFFF",
             textDecoration: "none",
             fontWeight: "bold",
-            fontSize: "20px"
+            fontSize: "20px",
+            minHeight: '100%'
           }}
         >
           {painting.name}
