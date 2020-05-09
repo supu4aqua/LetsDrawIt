@@ -23,7 +23,7 @@
 
 p {
   font-weight: bold;
-  color: red;
+  color: white;
 }
 
 .paintings {
@@ -33,7 +33,6 @@ p {
 }
 
 .paintingList {
-  /*border: 2px solid green;*/
   margin: auto;
 }
 

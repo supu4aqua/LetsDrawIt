@@ -18,11 +18,11 @@ h2 {
   border-radius: 4px;
   cursor: pointer;
   color: brown;
-  height: 70px;
-  width: 250px;
+  height: 40px;
+  width: 150px;
   margin: 0 auto;
   margin-top: 40px;
-  font-size: 30px;
+  font-size: 15px;
   font-weight: bold;
   font-family: Luminari, fantasy;
   transition: all 0.5s;

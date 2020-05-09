@@ -34,7 +34,9 @@ class Main extends Component {
   }
 
   render() {
-    const paintings = this.context.paintings.map(painting => (
+    const paintings = this.context.paintings
+    .sort((a, b) => b.id - a.id)
+    .map(painting => (
       <li key={painting.id} className="paintings">
         <Link
           to={`/paintings/${painting.id}`}
@@ -42,7 +44,7 @@ class Main extends Component {
             color: "00FFFF",
             textDecoration: "none",
             fontWeight: "bold",
-            fontSize: "30px"
+            fontSize: "20px"
           }}
         >
           {painting.name}
@@ -50,7 +52,7 @@ class Main extends Component {
         <button
           title="Delete Painting"
           className="btn-delete-painting"
-          onClick={() => {
+          onClick={() => { if (window.confirm('Are you sure you wish to delete this painting?'))
             this.deletePaintingRequest(
               painting.id,
               this.context.deletePainting
@@ -59,6 +61,7 @@ class Main extends Component {
         ></button>
       </li>
     ));
+
 
     return (
       <div role="main" className="mainPage">
