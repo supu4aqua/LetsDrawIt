@@ -1,25 +1,16 @@
-<a href="https://painting-with-pixels-app.mesupi.now.sh"><img src="https://avatars1.githubusercontent.com/u/4284691?v=3&s=200" title="FVCproductions" alt="Painting With Pixels"></a>
+<a href="https://painting-with-pixels-app.mesupi.now.sh">Painting With Pixels</a>
+
+> Color the pixels and create a painting on 3x3 grid
+> User can create or view any existing painting. Color can be selected from a palette of 10 colors.
 
 
-# Painting With Pixels
+> Go to live project <a href="https://painting-with-pixels-app.mesupi.now.sh">here</a>
 
-> Subtitle or Short Description Goes Here
+> API can be accessed <a href="https://afternoon-citadel-97734.herokuapp.com/">here</a>
 
-> ideally one sentence
+> Built with 
+  - React.js
+  - Node
+  - Express
 
-> include terms/tags that can be searched
 
-
-Color the pixels and create a painting - User can create a painting or view/update any existing painting.
-User can select from 10 different colors in the palette and paint the 9 cells.
-Each cell represents a painting pixel.
-User can also delete a painting from main screen.
-At any point, user can work on only one painting.
-
-API - 
-Live Project - https://painting-with-pixels-app.mesupi.now.sh/
-Live Api - https://afternoon-citadel-97734.herokuapp.com/
-          To view the cells - https://afternoon-citadel-97734.herokuapp.com/api/cells
-          To view the paintings - https://afternoon-citadel-97734.herokuapp.com/api/paintings
-
-Technology Used - React.js, Express, Node
