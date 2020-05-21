@@ -1,3 +1,12 @@
+  # Painting With Pixels
+
+  Where users can color the pixels and create a painting on 3x3 grid
+
+  ### **_[Live link](https://afternoon-citadel-97734.herokuapp.com/)_**
+  
+  [![Build Status](https://travis-ci.org/supu4aqua/painting-with-pixels-app.png?branch=master)](https://travis-ci.org/supu4aqua/painting-with-pixels-app)
+  
+
 <a href="https://painting-with-pixels-app.mesupi.now.sh">Painting With Pixels</a>
 
 > Color the pixels and create a painting on 3x3 grid
