@@ -4,7 +4,7 @@
 
   ### **_[Live link](https://afternoon-citadel-97734.herokuapp.com/)_**
   
-  [![Build Status](https://travis-ci.org/supu4aqua/painting-with-pixels-app.png?branch=master)](https://travis-ci.org/supu4aqua/painting-with-pixels-app)
+  ![Travis Status](https://img.shields.io/travis/supu4aqua/painting-with-pixels-app)](https://img.shields.io/travis/supu4aqua/painting-with-pixels-app)
   
   This repo contains the client-side React app. Looking for the back-end Painting-With-Pixels API? **[Click Here](https://github.com/supu4aqua/painting-with-pixels-api.git)**
 
