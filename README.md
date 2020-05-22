@@ -1,8 +1,8 @@
   # Painting With Pixels
 
   Where users can color the pixels and create a painting on 3x3 grid
-
-  **[Live link](hhttps://painting-with-pixels-app.mesupi.now.sh/)**
+  
+<a href="https://painting-with-pixels-app.mesupi.now.sh/" target="_blank">Live Version</a>
   
   ![Travis Status](https://img.shields.io/travis/supu4aqua/painting-with-pixels-app)]
   
