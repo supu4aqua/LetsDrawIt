@@ -4,7 +4,7 @@
 
   ### **_[Live link](hhttps://painting-with-pixels-app.mesupi.now.sh/)_**
   
-  ![Travis Status](https://img.shields.io/travis/supu4aqua/painting-with-pixels-app)](https://img.shields.io/travis/supu4aqua/painting-with-pixels-app)
+  ![Travis Status](https://img.shields.io/travis/supu4aqua/painting-with-pixels-app)]
   
   This repo contains the client-side React app. Looking for the back-end Painting-With-Pixels API? **[Click Here](https://github.com/supu4aqua/painting-with-pixels-api.git)**
 
@@ -20,10 +20,10 @@ Each painting have 9 cells represting one of the colors of the grid.
 ![Home Page](https://gyazo.com/c56b9aba1fbfa9b94986321e3317bc0a.gif)
 
 #### New Painting:
-![New Painting](https://i.gyazo.com/09061dfeb25504f2a838ec89854bbab0.gif)
+![New Painting](https://gyazo.com/c1b92c23a8f51253b33e0b0cf1feeead.gif)
 
 #### Edit existing Painting: 
-![Edit a Form](https://i.gyazo.com/547804b2afd42d6b585ded5f10ff6f7d.gif)
+![Edit a Form](https://gyazo.com/3df743fa7d773795aef96d96f467d45f.gif)
 
 
 ## Technology
