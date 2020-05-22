@@ -2,7 +2,7 @@
 
   Where users can color the pixels and create a painting on 3x3 grid
 
-  ### **_[Live link](https://afternoon-citadel-97734.herokuapp.com/)_**
+  ### **_[Live link](hhttps://painting-with-pixels-app.mesupi.now.sh/)_**
   
   ![Travis Status](https://img.shields.io/travis/supu4aqua/painting-with-pixels-app)](https://img.shields.io/travis/supu4aqua/painting-with-pixels-app)
   
@@ -14,10 +14,10 @@ Each painting have 9 cells represting one of the colors of the grid.
 
 ## Screen Captures
 #### Landing Page and Start Painting:
-![Landing Page and Start Painting](https://i.gyazo.com/265cdf6a3c99454028504bc538b0d8bc.gif)
+![Landing Page and Start Painting](https://gyazo.com/ca9ea957d92689ab7250a572a741e5bd.gif)
 
 #### Home Page listing all existing paintings:
-![Review Feedback](https://i.gyazo.com/8c6f674f972021d5741ac36926969d9a.gif)
+![Home Page](https://gyazo.com/c56b9aba1fbfa9b94986321e3317bc0a.gif)
 
 #### New Painting:
 ![New Painting](https://i.gyazo.com/09061dfeb25504f2a838ec89854bbab0.gif)
