@@ -4,8 +4,6 @@
   
 <a href="https://painting-with-pixels-app.mesupi.now.sh/" target="_blank">Live Version</a>
   
-  ![Travis Status](https://img.shields.io/travis/supu4aqua/painting-with-pixels-app)]
-  
   This repo contains the client-side React app. Looking for the back-end Painting-With-Pixels API? **[Click Here](https://github.com/supu4aqua/painting-with-pixels-api.git)**
 
 ## Introduction
